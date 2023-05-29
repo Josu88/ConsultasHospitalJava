@@ -1,5 +1,5 @@
 //Indicamos en que paquete del proyecto java esta el archivo
-package ProyectoJava;
+package src.app;
 
 //Importamos paquetes necesarios
 import java.awt.BorderLayout;
@@ -52,7 +52,7 @@ public class Menu1 extends JFrame{
 		// Definimos los componentes del Jframe
 		
 		//Definimos la etiqueta llamada EtiqMenu
-		JLabel EtiqMenu = new JLabel("Conexion a  Mysql Server");
+		JLabel EtiqMenu = new JLabel("Conexion a Mysql Server");
 		EtiqMenu.setForeground(Color.RED);
 		EtiqMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		EtiqMenu.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -68,7 +68,7 @@ public class Menu1 extends JFrame{
 		
 		//Definimos el Boton llamado BotonConSqlServerConConsSen
 		JButton BotonConSqlServerConConsSen = new JButton("Conexion a Mysql Server con consulta Sencilla");
-		BotonConSqlServerConConsSen.setBounds(10, 69, 297, 46);
+		BotonConSqlServerConConsSen.setBounds(10, 69, 300, 46);
 		//A�adimos el Boton al contentPane
 		contentPane.add(BotonConSqlServerConConsSen);
 		

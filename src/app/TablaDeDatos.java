@@ -1,8 +1,7 @@
 //Indicamos en que paquete del proyecto java esta el archivo
-package ProyectoJava;
+package src.app;
 
 //Importamos paquetes necesarios
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,18 +24,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-import java.awt.Component;
 
 public class TablaDeDatos extends JFrame  {
 	// Definimos los componentes del Jframe

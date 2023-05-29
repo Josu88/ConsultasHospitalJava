@@ -1,8 +1,7 @@
 //Indicamos en que paquete del proyecto java esta el archivo
-package ProyectoJava;
+package src.app;
 
 //Importamos paquetes necesarios
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,20 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
 import java.sql.ResultSet;
 import javax.swing.JPasswordField;
 
@@ -173,7 +165,7 @@ public class ConexionBD extends JFrame {
 					//Definimos las variables para usar en el metodo del listener
 					String Servidor=CampServ.getText();
 					String Usuario=CampUsu.getText();
-					String Password=CampContra.getText();
+					String Password= new String(CampContra.getPassword());
 					String Puerto=CampPuerto.getText();
 					
 					//Asignamos el valor del comboboxBD a la variable BD
@@ -230,9 +222,10 @@ public class ConexionBD extends JFrame {
 							//Definimos las variables para usar en el metodo del listener
 							String Servidor=CampServ.getText();
 							String Usuario=CampUsu.getText();
-							String Password=CampContra.getText();
+							String Password=new String(CampContra.getPassword());
 							String Puerto=CampPuerto.getText();
 							
+
 						 RellenarComboBoxBD(Servidor,Puerto,Usuario,Password,comboBoxBD,conBD);
 							}
 							
@@ -257,7 +250,7 @@ public class ConexionBD extends JFrame {
 			public Connection ConexionBaseDatos(String Servidor,String Puerto,String Usuario,String Password) {
 				//Definimos las variables para la conexion con la Base de Datos
 			    //final String BD=comboBoxBases.getSelectedItem().toString();
-			    final String url="jdbc:mysql://"+Servidor+":"+Puerto+";databas=hospital;user="+Usuario+";password="+Password+";";
+			    final String url="jdbc:mysql://"+Servidor+":"+Puerto;
 				final String Driver="com.mysql.cj.jdbc.Driver";
 				ResultSet rs=null;
 			    Connection conexion=null;
@@ -278,7 +271,7 @@ public class ConexionBD extends JFrame {
 
 			   			try  {
 						        	//Realizar Conexion a la Base de datos
-						        	conexion = DriverManager.getConnection(url);
+						        	conexion = DriverManager.getConnection(url,Usuario,Password);
 
 						        	
 				
@@ -304,9 +297,8 @@ public class ConexionBD extends JFrame {
 			
 			//Metodo ConexionBaseDatosConBD
 			public Connection ConexionBaseDatosConBD(String Servidor,String Puerto,String Usuario,String Password,String BD) {
-				//Definimos las variables para la conexion con la Base de Datos
-				final String url="jdbc:mysql://"+Servidor+":"+Puerto+";database="+BD+";user="+Usuario+";password="+Password+";";
 				final String Driver="com.mysql.cj.jdbc.Driver";
+				final String url="jdbc:mysql://"+Servidor+":"+Puerto+"/"+BD;
 				ResultSet rs=null;
 			    Connection conexion=null;
 			 
@@ -326,7 +318,7 @@ public class ConexionBD extends JFrame {
 
 			   			try  {
 						        	//Realizar Conexion a la Base de datos
-						        	conexion = DriverManager.getConnection(url);
+						        	conexion = DriverManager.getConnection(url,Usuario,Password);
 
 						        	
 				
@@ -366,7 +358,7 @@ public class ConexionBD extends JFrame {
 				st = con.createStatement();
 				
 				//Realizar la consulta a la Bases de Datos
-				rs = st.executeQuery("SELECT name FROM sys.databases; ");
+				rs = st.executeQuery("show DATABASES;");
 				
 						while (rs.next()) {
 							//Guardamos las bases de datos en el combobox
