@@ -2,7 +2,6 @@
 package src.app;
 
 //Importamos paquetes necesarios
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -79,7 +78,7 @@ public class Menu1 extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 			
 				//Creamos el objeto de la clase ConexionBD
-				ConexionBD con= new ConexionBD();
+				ConexionBD1 con= new ConexionBD1();
 				//pruebaConexion con= new pruebaConexion();
 				
 				//Guardamos el objeto del tipo ConexionBD en la variable con
@@ -106,10 +105,10 @@ public class Menu1 extends JFrame{
 					}
 				};
 		
-		//A�adimos el ActionListener al BottonSalir para que ejecute el codigo del ActionListener BottonSalirListener
+		//Añadimos el ActionListener al BottonSalir para que ejecute el codigo del ActionListener BottonSalirListener
 		BotonSalir.addActionListener(BottonSalirListener);
 		
-		//A�adimos el ActionListener al BotonConSqlServerConConsSen para que ejecute el codigo del ActionListenerBotonConSqlServerConConsSenListener
+		//Añadimos el ActionListener al BotonConSqlServerConConsSen para que ejecute el codigo del ActionListenerBotonConSqlServerConConsSenListener
 		BotonConSqlServerConConsSen.addActionListener( BotonConSqlServerConConsSenListener);
 	}
 }

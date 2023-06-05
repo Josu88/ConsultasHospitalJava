@@ -16,11 +16,14 @@ import javax.swing.JButton;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JPasswordField;
 
-public class ConexionBD extends JFrame {
+/***Autor: Josue Rodriguez***/
+
+
+public class ConexionBD1 extends JFrame {
 	
 	// Definimos los componentes del Jframe
 	private JPanel contentPane;
@@ -28,10 +31,12 @@ public class ConexionBD extends JFrame {
 	private JTextField CampPuerto;
 	private JTextField CampServ;
 	private JComboBox comboBoxBD;
-	private static ConexionBD conBD;
+	private static ConexionBD1 conBD;
 	private JPasswordField CampContra;
 
 
+	
+	
 
 	/**
 	 * Launch the application.
@@ -41,11 +46,10 @@ public class ConexionBD extends JFrame {
 			public void run() {
 				try {
 					//Creamos un objeto de la clase ConexionBD
-					//ConexionBD frame = new ConexionBD();
+					conBD = new ConexionBD1();
 					//Hacemos visible el Jframe1
-					//frame.setVisible(true);
-					//Creamos un objeto de la clase consulta1
-					//cons1= new Consulta1();
+					conBD.setVisible(true);
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +61,7 @@ public class ConexionBD extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConexionBD() {
+	public ConexionBD1() {
 		//Creamos la ventana JFrame
 		setTitle("Conexion a la Bases de Datos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -91,9 +95,9 @@ public class ConexionBD extends JFrame {
 				//Definimos el campo CampServ
 				CampServ = new JTextField();
 				CampServ.setBounds(170, 75, 196, 23);
+				CampServ.setColumns(10);
 				//A�adimos el campo de texto al JPanel
 				contentPane.add(CampServ);
-				CampServ.setColumns(10);
 				
 				//Definimos la etiqueta EtiqUsu
 				JLabel EtiqUsu = new JLabel("Usuario:");
@@ -110,17 +114,18 @@ public class ConexionBD extends JFrame {
 				//Definimos el campo CampUsu
 				CampUsu = new JTextField();
 				CampUsu.setBounds(170, 22, 196, 20);
+				CampUsu.setColumns(10);
 				//A�adimos el campo de texto al JPanel
 				contentPane.add(CampUsu);
-				CampUsu.setColumns(10);
+				
 				
 				//Definimos el campo CampPuerto
 				CampPuerto = new JTextField();
 				CampPuerto.setText("1433");
 				CampPuerto.setBounds(170, 107, 196, 20);
+				CampPuerto.setColumns(10);
 				//A�adimos el campo de texto al JPanel
 				contentPane.add(CampPuerto);
-				CampPuerto.setColumns(10);
 				
 				//Definimos la JLabel EtiqBD
 				JLabel EtiqBD = new JLabel("Base de Datos:");
@@ -175,7 +180,7 @@ public class ConexionBD extends JFrame {
 					ConexionBaseDatos(Servidor,Puerto,Usuario,Password);
 		
 					//Creamos un Objeto de la Clase TablaDeDatos
-					TablaDeDatos tb=new TablaDeDatos();
+					TablaDeDatos1 tb=new TablaDeDatos1();
 					
 					//Pasamos los valores de los atributos de ConeionBD a TablaDeDatos
 					tb.setConBD(conBD);
@@ -190,7 +195,13 @@ public class ConexionBD extends JFrame {
 					JComboBox TablaBD=tb.getcomboBoxTablaBD();;
 					
 					//Rellenamos el ComboBoxTablasBD
-					tb.RellenarComboBoxTablaBD(Servidor,Puerto,Usuario,Password,TablaBD,conBD,BD);
+					try {
+						TablaDeDatos1.RellenarComboBoxTablaBD(Servidor,Puerto,Usuario,Password,TablaBD,conBD,BD);
+					} catch (SQLException e1) {
+						//Sacamos mensaje de error por pantalla
+						System.out.println("Error al rellenar el comboboxTablaBD con las tablas de la base de datos asignada");
+						
+					}
 					//Mostrar el JFrame de la tabla
 					tb.setVisible(true);
 				
@@ -208,6 +219,8 @@ public class ConexionBD extends JFrame {
 							CampContra.setText("");
 							CampPuerto.setText("");
 							CampServ.setText("");
+							//Reseteamos el ComboBoBD
+							comboBoxBD.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una opci\u00F3n"}));
 							
 									
 						
@@ -222,10 +235,11 @@ public class ConexionBD extends JFrame {
 							//Definimos las variables para usar en el metodo del listener
 							String Servidor=CampServ.getText();
 							String Usuario=CampUsu.getText();
-							String Password=new String(CampContra.getPassword());
+							@SuppressWarnings("deprecation")
+							String Password=CampContra.getText();
 							String Puerto=CampPuerto.getText();
 							
-
+						//Rellenamos con las bases de datos en comboboxBD	
 						 RellenarComboBoxBD(Servidor,Puerto,Usuario,Password,comboBoxBD,conBD);
 							}
 							
@@ -263,7 +277,7 @@ public class ConexionBD extends JFrame {
 							
 						} catch (ClassNotFoundException e1) {
 							//Definir mensaje de error y mostrarlo por pantalla
-							System.out.println("No se cargo correctamente el Driver del conector del Mysql Server para java");
+							System.out.println("No se cargo correctamente el Driver del conector del Microsoft MySql para java");
 								
 							}	
 							
@@ -297,6 +311,7 @@ public class ConexionBD extends JFrame {
 			
 			//Metodo ConexionBaseDatosConBD
 			public Connection ConexionBaseDatosConBD(String Servidor,String Puerto,String Usuario,String Password,String BD) {
+				//Definimos las variables para la conexion con la Base de Datos
 				final String Driver="com.mysql.cj.jdbc.Driver";
 				final String url="jdbc:mysql://"+Servidor+":"+Puerto+"/"+BD;
 				ResultSet rs=null;
@@ -310,7 +325,7 @@ public class ConexionBD extends JFrame {
 							
 						} catch (ClassNotFoundException e1) {
 							//Definir mensaje de error y mostrarlo por pantalla
-							System.out.println("No se cargo correctamente el Driver del conector del Mysql Server para java");
+							System.out.println("No se cargo correctamente el Driver del conector del Microsoft MySql para java");
 								
 							}	
 							
@@ -336,17 +351,17 @@ public class ConexionBD extends JFrame {
 			
 						
 						 
-						//Sacamos fuera del metodo el resultado de st
+						//Sacamos fuera del metodo la conexion
 						return conexion;
 							
 	
 			}
 			
 			//Metodo RellenarComboBoxBD
-			public void RellenarComboBoxBD(String Servidor,String Puerto,String Usuario,String Password,JComboBox comboBoxBD,ConexionBD conBD) {
+			public static void RellenarComboBoxBD(String Servidor,String Puerto,String Usuario,String Password,JComboBox comboBoxBD,ConexionBD1 conBD) {
 				//Definimos las variables para usar en la consulta sql
 				Connection con=null;
-				 Statement st=null;
+				 PreparedStatement pst=null;
 				 ResultSet rs=null;
 				  
 				//LLamamos al metodo conexionBaseDatos del objeto conBD1 para crear la conexion con la Base de Datos
@@ -354,20 +369,21 @@ public class ConexionBD extends JFrame {
 				
 				try {
 				
-				//Creamos el Statement de la conexion para realizar la consulta
-				st = con.createStatement();
+				//Creamos el PreparedStatement de la conexion para realizar la consulta
+				pst = con.prepareStatement("show DATABASES;");
 				
 				//Realizar la consulta a la Bases de Datos
-				rs = st.executeQuery("show DATABASES;");
+				rs = pst.executeQuery();
 				
 						while (rs.next()) {
 							//Guardamos las bases de datos en el combobox
 							comboBoxBD.addItem(rs.getString(1));
 						}
-					
+						//Sacamos por pantalla el mensaje si se relleno correctamente el comboBoxBD
 						System.out.println("ComboBoxBD rellenado con las Bases de Datos Actuales");
 				
 					} catch (SQLException e3) {
+					//Sacamos por pantalla el mensaje de Error
 					System.out.println("Algun Dato de la consulta es erroneo, no se puede rellenar el ComboBoxBD");
 					}
 					
@@ -397,12 +413,12 @@ public class ConexionBD extends JFrame {
 			}
 
 
-			public static ConexionBD getConBD() {
+			public static ConexionBD1 getConBD() {
 				return conBD;
 			}
 
-			public static void setConBD(ConexionBD conBD) {
-				ConexionBD.conBD = conBD;
+			public static void setConBD(ConexionBD1 conBD) {
+				ConexionBD1.conBD = conBD;
 			}
 
 			public JTextField getCampServ() {
