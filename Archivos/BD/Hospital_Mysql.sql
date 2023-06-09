@@ -10,11 +10,13 @@ CREATE TABLE Hospitales (
 
  
  CREATE TABLE Gfh (
- CodiHospi VARCHAR(5) PRIMARY KEY,
- Codigo VARCHAR(5) UNIQUE,
+ CodiHospi VARCHAR(5) NOT NULL,
+ Codigo VARCHAR(5) NOT NULL,
  Nombre VARCHAR(80) NOT NULL,
- CONSTRAINT claves UNIQUE(CodiHospi , Codigo),
- FOREIGN KEY (CodiHospi) REFERENCES Hospitales(Codigo));
+ primary key(Codigo,CodiHospi),
+ FOREIGN KEY (CodiHospi) REFERENCES Hospitales(Codigo)
+ ON DELETE cascade
+ ON UPDATE cascade);
 
 
 CREATE TABLE EQUIPOS (
@@ -29,8 +31,12 @@ CREATE TABLE EQUIPOS (
 	FechaHoraAlta datetime NOT NULL,
 	CodigoGfh VARCHAR(10) NOT NULL,
 	PRIMARY KEY (idEquipo),
-	FOREIGN KEY (CodiHospi) REFERENCES Hospitales(Codigo),
-	FOREIGN KEY (CodigoGfh) REFERENCES Gfh(Codigo));
+	FOREIGN KEY (CodiHospi) REFERENCES Hospitales(Codigo)
+    ON DELETE cascade
+	ON UPDATE cascade,
+	FOREIGN KEY (CodigoGfh) REFERENCES Gfh(Codigo)
+    ON DELETE cascade
+	ON UPDATE cascade);
 
 
 
