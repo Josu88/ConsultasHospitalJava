@@ -96,6 +96,7 @@ public class ConexionBD1 extends JFrame {
 				CampServ = new JTextField();
 				CampServ.setBounds(170, 75, 196, 23);
 				CampServ.setColumns(10);
+				CampServ.setText("containers-us-west-80.railway.app");
 				//A�adimos el campo de texto al JPanel
 				contentPane.add(CampServ);
 				
@@ -115,13 +116,14 @@ public class ConexionBD1 extends JFrame {
 				CampUsu = new JTextField();
 				CampUsu.setBounds(170, 22, 196, 20);
 				CampUsu.setColumns(10);
+				CampUsu.setText("root");
 				//A�adimos el campo de texto al JPanel
 				contentPane.add(CampUsu);
 				
 				
 				//Definimos el campo CampPuerto
 				CampPuerto = new JTextField();
-				CampPuerto.setText("1433");
+				CampPuerto.setText("5820");
 				CampPuerto.setBounds(170, 107, 196, 20);
 				CampPuerto.setColumns(10);
 				//A�adimos el campo de texto al JPanel
@@ -136,7 +138,7 @@ public class ConexionBD1 extends JFrame {
 				//Definimos el JComboBox ComboBoxBD
 				comboBoxBD = new JComboBox();
 				comboBoxBD.setBounds(170, 133, 196, 23);
-				comboBoxBD.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una opci\u00F3n"}));
+				comboBoxBD.setModel(new DefaultComboBoxModel(new String[] {"railway"}));
 				//A�adimos el JComboBox al JPanel
 				contentPane.add(comboBoxBD);
 				
@@ -155,6 +157,7 @@ public class ConexionBD1 extends JFrame {
 				//Definimos el JPasswordField CampContra
 				CampContra = new JPasswordField();
 				CampContra.setBounds(170, 47, 196, 23);
+				CampContra.setText("vwISs4tIuhKhi5smbxlF");
 				//A�adimos el JPasswordField al JPanel
 				contentPane.add(CampContra);
 			
