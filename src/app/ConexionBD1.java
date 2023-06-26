@@ -1,5 +1,6 @@
+package src;
 //Indicamos en que paquete del proyecto java esta el archivo
-package src.app;
+
 
 //Importamos paquetes necesarios
 import java.awt.EventQueue;
@@ -96,7 +97,7 @@ public class ConexionBD1 extends JFrame {
 				CampServ = new JTextField();
 				CampServ.setBounds(170, 75, 196, 23);
 				CampServ.setColumns(10);
-				CampServ.setText("containers-us-west-80.railway.app");
+				CampServ.setText("containers-us-west-3.railway.app");
 				//A�adimos el campo de texto al JPanel
 				contentPane.add(CampServ);
 				
@@ -123,7 +124,7 @@ public class ConexionBD1 extends JFrame {
 				
 				//Definimos el campo CampPuerto
 				CampPuerto = new JTextField();
-				CampPuerto.setText("5820");
+				CampPuerto.setText("7628");
 				CampPuerto.setBounds(170, 107, 196, 20);
 				CampPuerto.setColumns(10);
 				//A�adimos el campo de texto al JPanel
@@ -157,7 +158,7 @@ public class ConexionBD1 extends JFrame {
 				//Definimos el JPasswordField CampContra
 				CampContra = new JPasswordField();
 				CampContra.setBounds(170, 47, 196, 23);
-				CampContra.setText("vwISs4tIuhKhi5smbxlF");
+				CampContra.setText("9GXThWM6HA0C18kdAmh5");
 				//A�adimos el JPasswordField al JPanel
 				contentPane.add(CampContra);
 			
@@ -280,7 +281,7 @@ public class ConexionBD1 extends JFrame {
 							
 						} catch (ClassNotFoundException e1) {
 							//Definir mensaje de error y mostrarlo por pantalla
-							System.out.println("No se cargo correctamente el Driver del conector del Microsoft MySql para java");
+							System.out.println("No se cargo correctamente el Driver del conector del MySql para java");
 								
 							}	
 							
