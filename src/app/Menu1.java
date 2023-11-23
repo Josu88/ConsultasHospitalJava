@@ -67,7 +67,7 @@ public class Menu1 extends JFrame{
 		
 		//Definimos el Boton llamado BotonConSqlServerConConsSen
 		JButton BotonConSqlServerConConsSen = new JButton("Conexion a Mysql Server con consulta Sencilla");
-		BotonConSqlServerConConsSen.setBounds(10, 69, 300, 46);
+		BotonConSqlServerConConsSen.setBounds(10, 69, 320, 46);
 		//A�adimos el Boton al contentPane
 		contentPane.add(BotonConSqlServerConConsSen);
 		
